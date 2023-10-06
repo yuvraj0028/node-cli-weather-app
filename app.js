@@ -2,6 +2,12 @@ const yargs = require("yargs");
 const geocode = require("./utils/geocode");
 const forecast = require("./utils/forecast");
 
+if (process.argv[2] !== "get") {
+  console.log(
+    `Enter the command ' node app.js get --location="{your location}" '`
+  );
+}
+
 yargs.command({
   command: "get",
   describe: "Fetch weather of provided location",
@@ -13,11 +19,11 @@ yargs.command({
     },
   },
   handler: (argv) => {
-    geocode(argv.location, (errorGeo, dataGeo) => {
+    geocode(argv.location, (errorGeo, { lat, lon, place } = {}) => {
       if (errorGeo) return console.log(`Error - ${errorGeo}`);
-      forecast(dataGeo.lat, dataGeo.lon, (error, data) => {
+      forecast(lat, lon, (error, data) => {
         if (error) return console.log(error);
-        console.log(dataGeo.place);
+        console.log(place);
         console.log(data);
       });
     });
