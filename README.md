@@ -2,6 +2,10 @@
 
 A command-line weather app which can display real-time weather data for any location on earth. It is built using Node modules and APIs like WeatherStack.
 
+## GET API KEY
+
+Create an account on Weather Stack and get thier free API key, paste the API key in utils/forecast.js where "weatherUrl" is defined and you are done.
+
 ## Run Locally
 
 Clone the project
